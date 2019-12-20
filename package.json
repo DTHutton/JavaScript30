@@ -1,6 +1,13 @@
 {
-    "name": "javascript30",
-    "version": "0.0.0",
-    "private": true,
-    "dependencies": {}
+  "name": "javascript30",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "browser-sync start --server --files '**/*.css, **/*.html, **/*.js, !node_modules/**/*' --directory --port 7777"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.26.7"
   }
+}
