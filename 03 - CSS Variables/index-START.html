@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Scoped CSS Variables and JS</title>
 </head>
+
 <body>
   <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
 
@@ -21,6 +23,21 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
+
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
+
+    .hl {
+      color: var(--base);
+    }
 
     /*
       misc styles, nothing to do with CSS variables
@@ -45,7 +62,18 @@
   </style>
 
   <script>
+    const inputs = document.querySelectorAll(".controls input"); // grabs all input tags with the class of controls
+
+    function handleUpdate() { // function that runs to update the data- attributes whnever called
+      const suffix = this.dataset.sizing || ""; // dataset is an object that contains all data attributes from the selected element. || is there to get around appending 'undefined' to the data-sizing attribute for the color
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix); // selects the entire document grab the css variables since they are applied to :root
+      // setProperty has two arugments 1. grabs name attribute based on the criteria above 2. changes the value of the name attribute to the value defined by the css variable and adds the correct suffix based on suffix variable in the handleUpdate function
+    }
+
+    inputs.forEach(input => input.addEventListener("change", handleUpdate)); // loops over the inputs and adds an event listener of change that runs the handleUpdate function when triggered
+    inputs.forEach(input => input.addEventListener("mousemove", handleUpdate)); // loops over the inputs and adds an event listener of mousemove that runs the handleUpdate function when triggered
   </script>
 
 </body>
+
 </html>
