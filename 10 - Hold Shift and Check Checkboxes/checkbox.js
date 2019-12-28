@@ -1,7 +1,7 @@
-//? logs timestamp of refresh so I don't have to think about what should be showing since I can't figure out how to turn off the hot reload for repl.it
+//? logs timestamp of reload
 //*--------------------------------------------------------
 const compiled = new Date();
-console.log('compiled: ', compiled);
+console.info('compiled: ', compiled);
 
 //*-------------------------------------------------------- //*--------------------------------------------------------
 //*-------------------------------------------------------- //*--------------------------------------------------------
@@ -36,12 +36,12 @@ let lastChecked;
 
 function handleCheck(e) {
 	let inBetween = false;
-	if(e.shiftKey && this.checked) { //! check if they had the shift key down AND check that they are checking it
+	if (e.shiftKey && this.checked) { //! check if they had the shift key down AND check that they are checking it
 		checkboxes.forEach(checkbox => { //! loop over every single checkbox
-			if(checkbox === this || checkbox === lastChecked) { 
+			if (checkbox === this || checkbox === lastChecked) {
 				inBetween = !inBetween;
 			}
-			if(inBetween) {
+			if (inBetween) {
 				checkbox.checked = true;
 			}
 		});

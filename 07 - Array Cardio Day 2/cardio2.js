@@ -1,7 +1,7 @@
-//? logs timestamp of refresh so I don't have to think about what should be showing since I can't figure out how to turn off the hot reload for repl.it
+//? logs timestamp of reload
 //*--------------------------------------------------------
 const compiled = new Date();
-console.log('compiled: ', compiled);
+console.info('compiled: ', compiled);
 
 //*-------------------------------------------------------- //*--------------------------------------------------------
 //*-------------------------------------------------------- //*--------------------------------------------------------
@@ -127,7 +127,7 @@ const comments = [
 //* Wes's Solution(s)
 //* ------------------------------
 const index = comments.findIndex(comment => comment.id === 823423);
-console.log({index});
+console.log({ index });
 
 
 //? Delete the comment with the ID of 823423

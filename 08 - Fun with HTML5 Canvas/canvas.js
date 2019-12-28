@@ -1,7 +1,7 @@
-//? logs timestamp of refresh so I don't have to think about what should be showing since I can't figure out how to turn off the hot reload for repl.it
+//? logs timestamp of reload
 //*--------------------------------------------------------
 const compiled = new Date();
-console.log('compiled: ', compiled);
+console.info('compiled: ', compiled);
 
 //*-------------------------------------------------------- //*--------------------------------------------------------
 //*-------------------------------------------------------- //*--------------------------------------------------------
@@ -27,7 +27,7 @@ let direction = true; //! sets default value for direction variable that is used
 //? function that runs when mouse is moved on top of the canvas
 //*--------------------------------------------------------
 function draw(e) {
-  if(!isDrawing) return; //! stops function from running if not mouse down
+  if (!isDrawing) return; //! stops function from running if not mouse down
   console.log(e)
   ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
   ctx.beginPath(); //! starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path
@@ -38,19 +38,19 @@ function draw(e) {
   ctx.stroke(); //! strokes (outlines) the current or given path with the current stroke style
   [lastX, lastY] = [e.offsetX, e.offsetY]; //! updates lastX and lastY with the values associated with last known mouse position
   hue++; //! increments the hue value by 1 every time draw() runs
-	//! resets hue value to 0 so that the number doesn't keep increasing out of the control
+  //! resets hue value to 0 so that the number doesn't keep increasing out of the control
   if (hue >= 360) {
     hue = 0;
   }
-	//! increments/decrements the lineWidth based on value of `direction`
-	if(ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
-		direction = !direction;
-	}
-	if(direction) {
-	ctx.lineWidth++;
-	} else {
-			ctx.lineWidth--;
-	}
+  //! increments/decrements the lineWidth based on value of `direction`
+  if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+    direction = !direction;
+  }
+  if (direction) {
+    ctx.lineWidth++;
+  } else {
+    ctx.lineWidth--;
+  }
 }
 
 //? event listeners
@@ -58,7 +58,7 @@ function draw(e) {
 canvas.addEventListener('mousedown', (e) => {
   isDrawing = true; //! sets isDrawing to true if mouse is down
   [lastX, lastY] = [e.offsetX, e.offsetY]; //! updates lastX and lastY with the values associated with last known mouse position
-  });
+});
 
 canvas.addEventListener('mousemove', draw); //! adds event listener that runs draw() when mouse is moved on top of canvas
 canvas.addEventListener('mouseup', () => isDrawing = false); //! sets isDrawing to false if mouse is up

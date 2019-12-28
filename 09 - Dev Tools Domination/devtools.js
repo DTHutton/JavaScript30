@@ -1,7 +1,7 @@
-//? logs timestamp of refresh so I don't have to think about what should be showing since I can't figure out how to turn off the hot reload for repl.it
+//? logs timestamp of reload
 //*--------------------------------------------------------
 const compiled = new Date();
-console.log('compiled: ', compiled);
+console.info('compiled: ', compiled);
 
 //*-------------------------------------------------------- //*--------------------------------------------------------
 //*-------------------------------------------------------- //*--------------------------------------------------------
@@ -98,7 +98,7 @@ fetch('https://api.github.com/users/dthutton')
 	.then(data => data.json())
 	.then(data => {
 		console.table(data);
-});
+	});
 
 
 //? Event listener

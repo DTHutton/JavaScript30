@@ -1,5 +1,4 @@
-
-//? logs timestamp of refresh
+//? logs timestamp of reload
 //*--------------------------------------------------------
 const compiled = new Date();
 console.info("compiled: ", compiled);
@@ -7,7 +6,7 @@ console.info("compiled: ", compiled);
 //*-------------------------------------------------------- //*--------------------------------------------------------
 //*-------------------------------------------------------- //*--------------------------------------------------------
 
-/* get our elements */
+//* get our elements
 //*--------------------------------------------------------
 const player = document.querySelector(".player");
 const video = player.querySelector(".viewer");
@@ -17,7 +16,7 @@ const toggle = player.querySelector(".toggle");
 const skipButtons = player.querySelectorAll("[data-skip]");
 const ranges = player.querySelectorAll(".player__slider");
 
-/* build out functions */
+//* build out functions
 //*--------------------------------------------------------
 
 function togglePlay() {
@@ -48,7 +47,7 @@ function scrub(e) {
   video.currentTime = scrubTime;
 }
 
-/* hook up event listeners */
+//* hook up event listeners
 //*--------------------------------------------------------
 video.addEventListener("click", togglePlay);
 video.addEventListener("play", updateButton);
