@@ -9,8 +9,7 @@ console.info("compiled: ", compiled);
 function debounce(func, wait = 20, immediate = true) {
 	let timeout;
 	return function () {
-		const context = this,
-			args = arguments;
+		const context = this, args = arguments;
 		const later = function () {
 			timeout = null;
 			if (!immediate) func.apply(context, args);

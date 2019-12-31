@@ -41,7 +41,7 @@ function addItem(e) {
 //! not reaching outside of the function to make populateList() more flexible in case you want to expand its use.
 function populateList(plates = [], platesList) {
 	platesList.innerHTML = plates.map((plate, i) => { //! takes in plate and index for map().
-	//! ${plate.done ? 'checked' : ''} c
+		//! ${plate.done ? 'checked' : ''} c
 		return `
 			<li>
 				<input
@@ -69,7 +69,7 @@ function toggleDone(e) {
 
 //? function that toggles all items checkbox value
 //*--------------------------------------------------------
-function toggleCheck(e) {
+function toggleCheck() {
 	if (!items.length) return; //! if the items array is empty, the function doesn't run.
 	const allBool = items.every((item) => item.done); //! checks to see if every item in the list is checked off and sets it to a variable that will return true or false.
 	if (allBool) {
@@ -85,7 +85,7 @@ function toggleCheck(e) {
 
 //? function that clears all items 
 //*--------------------------------------------------------
-function clearItems(e) {
+function clearItems() {
 	if (!items.length) { //! if the items array is empty, the function doesn't run.
 		return;
 	} else {
