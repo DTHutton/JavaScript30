@@ -11,6 +11,8 @@ console.info("compiled: ", compiled);
 const addItems = document.querySelector('.add-items');
 const itemsList = document.querySelector('.plates');
 const items = JSON.parse(localStorage.getItem('items')) || []; //! checks for data in local storage and converts it into an object or returns empty array if no local data.
+const clearBtn = document.querySelector('#clear');
+const checkerBtn = document.querySelector('#checker');
 
 
 //? functions
@@ -39,7 +41,7 @@ function addItem(e) {
 //! not reaching outside of the function to make populateList() more flexible in case you want to expand its use.
 function populateList(plates = [], platesList) {
 	platesList.innerHTML = plates.map((plate, i) => { //! takes in plate and index for map().
-	//! ${plate.done ? 'checked' : ''} checks to see if the checked value is true or not when rendering
+	//! ${plate.done ? 'checked' : ''} c
 		return `
 			<li>
 				<input
@@ -65,11 +67,40 @@ function toggleDone(e) {
 	populateList(items, itemsList); //! runs populateList() with the items and itemsList variables as its arguments.
 }
 
+//? function that toggles all items checkbox value
+//*--------------------------------------------------------
+function toggleCheck(e) {
+	if (!items.length) return; //! if the items array is empty, the function doesn't run.
+	const allBool = items.every((item) => item.done); //! checks to see if every item in the list is checked off and sets it to a variable that will return true or false.
+	if (allBool) {
+		items.forEach(item => item.done = false); //! if allBool returns true, it sets each item's done value to false.
+		localStorage.setItem('items', JSON.stringify(items)); //! sets the items array to local storage and converts the array to a string so that localStorage can read it.
+		populateList(items, itemsList); //! runs populateList() with the items and itemsList variables as its arguments.
+	} else {
+		items.forEach(item => item.done = true);  //! if allBool returns false, it sets each item's done value to true.
+		localStorage.setItem('items', JSON.stringify(items)); //! sets the items array to local storage and converts the array to a string so that localStorage can read it.
+		populateList(items, itemsList); //! runs populateList() with the items and itemsList variables as its arguments.
+	}
+}
+
+//? function that clears all items 
+//*--------------------------------------------------------
+function clearItems(e) {
+	if (!items.length) { //! if the items array is empty, the function doesn't run.
+		return;
+	} else {
+		items.length = 0; //! if the items array is not empty, it sets the lengh to 0 which clears the array out.
+		localStorage.setItem('items', JSON.stringify(items)); //! sets the items array to local storage and converts the array to a string so that localStorage can read it.
+		populateList(items, itemsList);  //! runs populateList() with the items and itemsList variables as its arguments.
+	}
+}
 
 //? event listeners
 //*-------------------------------------------------------- //*--------------------------------------------------------
 addItems.addEventListener('submit', addItem);
 itemsList.addEventListener('click', toggleDone);
+checker.addEventListener('click', toggleCheck);
+clear.addEventListener('click', clearItems);
 
 
 //? function calls
