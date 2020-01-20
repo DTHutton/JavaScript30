@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Understanding JavaScript's Capture</title>
 </head>
+
 <body class="bod">
 
   <div class="one">
@@ -13,51 +15,54 @@
     </div>
   </div>
 
-<style>
-  html {
-    box-sizing: border-box;
-  }
-  
-  *, *:before, *:after { 
-    box-sizing: inherit; 
-  }
+  <style>
+    html {
+      box-sizing: border-box;
+    }
 
-  div {
-    width: 100%;
-    padding: 100px;
-  }
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
 
-  .one {
-    background: thistle;
-  }
+    div {
+      width: 100%;
+      padding: 100px;
+    }
 
-  .two {
-    background: mistyrose;
-  }
+    .one {
+      background: thistle;
+    }
 
-  .three {
-    background: coral;
-  }
-</style>
+    .two {
+      background: mistyrose;
+    }
 
-<button>Click</button>
-  
-<script>
-	const divs = document.querySelectorAll('div')
-	const button = document.querySelector('button')
+    .three {
+      background: coral;
+    }
+  </style>
 
-	function logText(e) {
-    console.log(this.classList.value)
-    e.stopPropagation()
-	}
+  <button>Click</button>
 
-	divs.forEach(div =>
-		div.addEventListener('click', logText, { capture: false, once: true })
-	)
-	button.addEventListener('click', () => console.log('Click!!!'), {
-		once: true
-	})
-  
-</script>
+  <script>
+    const divs = document.querySelectorAll('div')
+    const button = document.querySelector('button')
+
+    function logText(e) {
+      console.log(this.classList.value)
+      e.stopPropagation()
+    }
+
+    divs.forEach(div =>
+      div.addEventListener('click', logText, { capture: false, once: true })
+    )
+    button.addEventListener('click', () => console.log('Click!!!'), {
+      once: true
+    })
+
+  </script>
 </body>
+
 </html>
